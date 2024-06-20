@@ -16,7 +16,6 @@ public class PrimeiraClasseJava {
 
 		// A partir aula 9.14 - Entrada de dados pelo teclado - 18/06/2024
 
-		String xxx = JOptionPane.showInputDialog("xxxx");
 		String nome = JOptionPane.showInputDialog("Qual o nome do aluno? ");
 		String idade = JOptionPane.showInputDialog("Qual a idade do aluno? ");
 		String dataNascimento = JOptionPane.showInputDialog("Qual a data de nascimento do aluno? ");
@@ -74,9 +73,7 @@ public class PrimeiraClasseJava {
 		aluno1.getDisciplinas().add(disciplina1);
 		aluno1.getDisciplinas().add(disciplina2);
 		aluno1.getDisciplinas().add(disciplina3);
-		aluno1.getDisciplinas().add(disciplina4);
-		
-		
+		aluno1.getDisciplinas().add(disciplina4);		
 		/*
 		 * Esse bloco de código não funciona mais a partir da implantação 
 		 * da lista de disciplinas 19/06/2024

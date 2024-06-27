@@ -20,8 +20,6 @@ public class Aluno {
 	String nomeEscola;
 	String serieMatriculado;
 	
-//	private Disciplina disciplina = new Disciplina();
-	
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}

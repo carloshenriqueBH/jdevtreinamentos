@@ -9,15 +9,9 @@ import cursojava.constantes.StatusAluno;
 /* Essa é a classe que representa o objeto Aluno 13/06/2024 
  * 
 */
-public class Aluno {
+public class Aluno extends Pessoa {
 
-	String nome;
-	int idade;
-	String dataNascimento;
-	String registroGeral;
-	String numeroCPF;
-	String nomeMae;
-	String nomePai;
+	
 	String dataMatricula;
 	String nomeEscola;
 	String serieMatriculado;
@@ -38,9 +32,7 @@ public class Aluno {
 	 */
 	/*
 	 * public Disciplina getDisciplina() { return disciplina; }
-	 */
-	
-	
+	 */	
 
 	public Aluno() {
 		
@@ -170,7 +162,7 @@ public class Aluno {
 		return Objects.hash(dataMatricula, dataNascimento, idade, nome, nomeEscola, nomeMae, nomePai, numeroCPF,
 				registroGeral, serieMatriculado);
 	}
-
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -193,6 +185,25 @@ public class Aluno {
 				+ registroGeral + ", numeroCPF=" + numeroCPF + ", nomeMae=" + nomeMae + ", nomePai=" + nomePai
 				+ ", dataMatricula=" + dataMatricula + ", nomeEscola=" + nomeEscola + ", serieMatriculado="
 				+ serieMatriculado + "]";
+	}
+	
+	@Override
+	public boolean pessoaMaiorIdade() {
+	    return idade >=13;
+	//	return super.pessoaMaiorIdade();
+	}
+	public String msgMaiorIdade() {
+		return this.pessoaMaiorIdade() ? "Sim, é maior de idade!" : "Não, não é maior de idade!";
+	}
+	/*
+	 * Método abstrato declarado na classe PESSOA e foi implementado
+	 * automaticamente na classe filha ALUNO
+	 * 02/07/2024 - aula 10.7
+	 */
+	@Override
+	public double salario() {
+	
+		return 1230.00;
 	}
 	
 	

@@ -4,9 +4,11 @@ import java.sql.Array;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.JOptionPane;
 
 import cursojava.classes.Aluno;
@@ -18,20 +20,27 @@ public class PrimeiraClasseJava {
 
 //		Aluno aluno1 = new Aluno();
 
-		List<Aluno> alunos = new ArrayList<Aluno>();
-		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
-		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
-		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
+		String login = JOptionPane.showInputDialog("Informe o Login: ");
+		String senha = JOptionPane.showInputDialog("Informe o Login: ");
 
-		for (int qtde = 1; qtde < 6; qtde++) {
+		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+			List<Aluno> alunos = new ArrayList<Aluno>();
 
-			Aluno aluno1 = new Aluno();
-			String nomeAluno = JOptionPane.showInputDialog("Nome do Aluno " + qtde + " ?");
-			aluno1.setNome(nomeAluno);
-			/*
-			 * Instância do Objeto: Criação do Objeto aluno1 é uma referência para o objeto
-			 * aluno
-			 */
+			HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
+
+//		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
+//		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
+//		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
+
+			for (int qtde = 1; qtde < 6; qtde++) {
+
+				Aluno aluno1 = new Aluno();
+				String nomeAluno = JOptionPane.showInputDialog("Nome do Aluno " + qtde + " ?");
+				aluno1.setNome(nomeAluno);
+				/*
+				 * Instância do Objeto: Criação do Objeto aluno1 é uma referência para o objeto
+				 * aluno
+				 */
 
 //		String nome = "Carlos Henrique";
 //		String idade = "63";
@@ -43,21 +52,21 @@ public class PrimeiraClasseJava {
 //		String dataMatricula = "14/02/2024";
 //		String serieMatriculado = "1";
 //		String nomeEscola = "JDev Treinamentos";
-			/*
-			 * RECEBENDO AS DISCIPLINAS DE FORMA DINÂMICA USANDO UM "FOR" - AULA 9.22 -
-			 * 21/06/2024
-			 */
-			for (int pos = 1; pos <= 1; pos++) {
-				String nomeDisciplina = JOptionPane
-						.showInputDialog("Nome da disciplina " + Integer.valueOf(pos) + " ? ");
-				String notaDisciplina = JOptionPane
-						.showInputDialog("Qual a nota da disciplina " + Integer.valueOf(pos) + " ? ");
+				/*
+				 * RECEBENDO AS DISCIPLINAS DE FORMA DINÂMICA USANDO UM "FOR" - AULA 9.22 -
+				 * 21/06/2024
+				 */
+				for (int pos = 1; pos <= 1; pos++) {
+					String nomeDisciplina = JOptionPane
+							.showInputDialog("Nome da disciplina " + Integer.valueOf(pos) + " ? ");
+					String notaDisciplina = JOptionPane
+							.showInputDialog("Qual a nota da disciplina " + Integer.valueOf(pos) + " ? ");
 
-				Disciplina disciplina = new Disciplina();
-				disciplina.setDisciplina(nomeDisciplina);
-				disciplina.setNota(Integer.valueOf(notaDisciplina));
-				aluno1.getDisciplinas().add(disciplina);
-			}
+					Disciplina disciplina = new Disciplina();
+					disciplina.setDisciplina(nomeDisciplina);
+					disciplina.setNota(Integer.valueOf(notaDisciplina));
+					aluno1.getDisciplinas().add(disciplina);
+				}
 
 //			int escolha = JOptionPane.showConfirmDialog(null, "Deseja remover alguma disciplina? ");
 //
@@ -71,39 +80,45 @@ public class PrimeiraClasseJava {
 //					continuarRemover = JOptionPane.showConfirmDialog(null, "continuar a remover? ");
 //				}
 //			}
-			alunos.add(aluno1);
-		}
-		/*
-		 * SEPARANDO OS ALUNOS EM TRÊS LISTAS: APROVADOS, REPROVADOS E EM RECUPERAÇÃO
-		 * AULA 9.32 EM 28/06/2024
-		 */
-		for (Aluno aluno : alunos) {
-			if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)) {
-				alunosAprovados.add(aluno);
-			} else if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
-				alunosRecuperacao.add(aluno);
-			} else {
-				alunosReprovados.add(aluno);
+				alunos.add(aluno1);
 			}
-		}
-		/*
-		 * COMENTANDO ESSES DOIS BLOCOS DE CÓDIGO PARA OS TESTES DA AULA 9:29
-		 * "PERCORRENDO LISTAS PELAS POSIÇÕES" - 28/06/2024 for (Aluno aluno : alunos) {
-		 * 
-		 * if (aluno.getNome().equalsIgnoreCase("henrique")) { alunos.remove(aluno);
-		 * break; } else { System.out.println(aluno.toString());
-		 * System.out.println("A média de notas do aluno 1 é " + aluno.getMediaNota());
-		 * System.out.println(aluno); System.out.println("Média do aluno: " +
-		 * aluno.getMediaNota()); System.out.println("Situação do aluno: " +
-		 * aluno.getAlunoAprovado2()); } } for (Aluno aluno: alunos) {
-		 * System.out.println("Alunos que sobraram na lista:");
-		 * System.out.println(aluno.getNome());
-		 * System.out.println("Suas disciplinas são: "); for (Disciplina disciplina:
-		 * aluno.getDisciplinas()) { System.out.println(disciplina.getDisciplina()+
-		 * " com "+disciplina.getNota()+" Pontos."); } }
-		 */
+			maps.put(StatusAluno.APROVADO, new ArrayList<Aluno>());
+			maps.put(StatusAluno.REPROVADO, new ArrayList<Aluno>());
+			maps.put(StatusAluno.RECUPERACAO, new ArrayList<Aluno>());
+			/*
+			 * SEPARANDO OS ALUNOS EM TRÊS LISTAS: APROVADOS, REPROVADOS E EM RECUPERAÇÃO
+			 * AULA 9.32 EM 28/06/2024
+			 */
+			for (Aluno aluno : alunos) {
+				if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.APROVADO)) {
+					maps.get(StatusAluno.APROVADO).add(aluno);
+					// alunosAprovados.add(aluno);
+				} else if (aluno.getAlunoAprovado2().equalsIgnoreCase(StatusAluno.RECUPERACAO)) {
+					// alunosRecuperacao.add(aluno);
+					maps.get(StatusAluno.RECUPERACAO).add(aluno);
+				} else {
+					maps.get(StatusAluno.REPROVADO).add(aluno);
+					// alunosReprovados.add(aluno);
+				}
+			}
+			/*
+			 * COMENTANDO ESSES DOIS BLOCOS DE CÓDIGO PARA OS TESTES DA AULA 9:29
+			 * "PERCORRENDO LISTAS PELAS POSIÇÕES" - 28/06/2024 for (Aluno aluno : alunos) {
+			 * 
+			 * if (aluno.getNome().equalsIgnoreCase("henrique")) { alunos.remove(aluno);
+			 * break; } else { System.out.println(aluno.toString());
+			 * System.out.println("A média de notas do aluno 1 é " + aluno.getMediaNota());
+			 * System.out.println(aluno); System.out.println("Média do aluno: " +
+			 * aluno.getMediaNota()); System.out.println("Situação do aluno: " +
+			 * aluno.getAlunoAprovado2()); } } for (Aluno aluno: alunos) {
+			 * System.out.println("Alunos que sobraram na lista:");
+			 * System.out.println(aluno.getNome());
+			 * System.out.println("Suas disciplinas são: "); for (Disciplina disciplina:
+			 * aluno.getDisciplinas()) { System.out.println(disciplina.getDisciplina()+
+			 * " com "+disciplina.getNota()+" Pontos."); } }
+			 */
 
-		/* Percorrendo a lista pela suas posições */
+			/* Percorrendo a lista pela suas posições */
 
 //		for (int pos = 0; pos < alunos.size(); pos++) {
 //			Aluno aluno = alunos.get(pos);
@@ -120,22 +135,33 @@ public class PrimeiraClasseJava {
 //			}
 //			System.out.println("------------------------------------------------------------------");
 //		}
-		System.out.println("-------------------LISTA DOS ALUNOS REPROVADOS:-------------------");
-		for (Aluno aluno: alunosReprovados) {
-			System.out.println("Resultado = "+ aluno.getNome()+" " +aluno.getAlunoAprovado2()+" Com a média "+aluno.getMediaNota());
-		}
-		System.out.println("------------------------------------------------------------------");
+			System.out.println("-------------------LISTA DOS ALUNOS REPROVADOS:-------------------");
+			// for (Aluno aluno: alunosReprovados) {
+			for (Aluno aluno : maps.get(StatusAluno.REPROVADO)) {
+				System.out.println("Resultado = " + aluno.getNome() + " " + aluno.getAlunoAprovado2() + " Com a média "
+						+ aluno.getMediaNota());
+			}
+			System.out.println("------------------------------------------------------------------");
 
-		System.out.println("-------------------LISTA DOS ALUNOS EM RECUPERAÇÃO:-------------------");
-		for (Aluno aluno: alunosRecuperacao) {
-			System.out.println("Resultado = "+ aluno.getNome()+" "+aluno.getAlunoAprovado2()+" Com a média "+aluno.getMediaNota());
+			System.out.println("-------------------LISTA DOS ALUNOS EM RECUPERAÇÃO:-------------------");
+			// for (Aluno aluno: alunosRecuperacao) {
+			for (Aluno aluno : maps.get(StatusAluno.RECUPERACAO)) {
+				System.out.println("Resultado = " + aluno.getNome() + " " + aluno.getAlunoAprovado2() + " Com a média "
+						+ aluno.getMediaNota());
+			}
+			System.out.println("------------------------------------------------------------------");
+			System.out.println("-------------------LISTA DOS ALUNOS APROVADOS:-------------------");
+//		for (Aluno aluno: alunosAprovados) {
+			for (Aluno aluno : maps.get(StatusAluno.APROVADO)) {
+				System.out.println("Resultado = " + aluno.getNome() + " " + aluno.getAlunoAprovado2() + " Com a média "
+						+ aluno.getMediaNota());
+			}
+			System.out.println("------------------------------------------------------------------");
 		}
-		System.out.println("------------------------------------------------------------------");
-		System.out.println("-------------------LISTA DOS ALUNOS APROVADOS:-------------------");
-		for (Aluno aluno: alunosAprovados) {
-			System.out.println("Resultado = "+ aluno.getNome()+" "+aluno.getAlunoAprovado2()+" Com a média "+aluno.getMediaNota());
+		else
+		{
+			System.out.println("Você forneceu o login ou a senha inválido(s)!");
 		}
-		System.out.println("------------------------------------------------------------------");
 
 		/*
 		 * SUBSTITUINDO UM ALUNO NA LISTA - AULA 9.30 - 28/06/2024

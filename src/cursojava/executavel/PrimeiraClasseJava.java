@@ -13,18 +13,29 @@ import javax.swing.JOptionPane;
 
 import cursojava.classes.Aluno;
 import cursojava.classes.Disciplina;
+import cursojava.classes.Secretario;
 import cursojava.constantes.StatusAluno;
+import cursoJavaInterfaces.PermitirAcesso;
 
 public class PrimeiraClasseJava {
 	public static void main(String[] args) {
 
-//		Aluno aluno1 = new Aluno();
+	//	Aluno aluno1 = new Aluno();
 
 		String login = JOptionPane.showInputDialog("Informe o Login: ");
 		String senha = JOptionPane.showInputDialog("Informe o Login: ");
 
-		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
-			List<Aluno> alunos = new ArrayList<Aluno>();
+	//	PermitirAcesso secretario = new Secretario();
+		PermitirAcesso permitirAcesso = new Secretario(login,senha);
+		
+		
+//		secretario.setLogin(login);
+//		secretario.setSenha(senha);
+		
+		if (permitirAcesso.autenticar()) {
+			List<Aluno> alunos = new ArrayList<Aluno>(); 
+			
+//		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
 
 			HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
 
@@ -41,17 +52,7 @@ public class PrimeiraClasseJava {
 				 * Instância do Objeto: Criação do Objeto aluno1 é uma referência para o objeto
 				 * aluno
 				 */
-
-//		String nome = "Carlos Henrique";
-//		String idade = "63";
-//		String dataNascimento = "10/07/1960";
-//		String RG = "M-1.567.940 SSPMG";
-//		String CPF = "403.309.156-49";
-//		String nomeMae = "Sudaria";
-//		String nomePai = "Joaquim";
-//		String dataMatricula = "14/02/2024";
-//		String serieMatriculado = "1";
-//		String nomeEscola = "JDev Treinamentos";
+				
 				/*
 				 * RECEBENDO AS DISCIPLINAS DE FORMA DINÂMICA USANDO UM "FOR" - AULA 9.22 -
 				 * 21/06/2024
@@ -157,11 +158,12 @@ public class PrimeiraClasseJava {
 						+ aluno.getMediaNota());
 			}
 			System.out.println("------------------------------------------------------------------");
-		}
+		}	
 		else
 		{
-			System.out.println("Você forneceu o login ou a senha inválido(s)!");
+			System.out.println("Você não forneceu um login ou senha válidos!");
 		}
+			
 
 		/*
 		 * SUBSTITUINDO UM ALUNO NA LISTA - AULA 9.30 - 28/06/2024

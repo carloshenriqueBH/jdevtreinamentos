@@ -12,36 +12,26 @@ import javax.net.ssl.SSLEngineResult.Status;
 import javax.swing.JOptionPane;
 
 import cursojava.classes.Aluno;
+import cursojava.classes.Diretor;
 import cursojava.classes.Disciplina;
 import cursojava.classes.Secretario;
+import cursojava.classesauxiliares.FuncaoAutenticacao;
 import cursojava.constantes.StatusAluno;
 import cursoJavaInterfaces.PermitirAcesso;
 
 public class PrimeiraClasseJava {
-	public static void main(String[] args) {
-
-	//	Aluno aluno1 = new Aluno();
+	
+	
+	public static void main(String[] args) {			
 
 		String login = JOptionPane.showInputDialog("Informe o Login: ");
 		String senha = JOptionPane.showInputDialog("Informe o Login: ");
-
-	//	PermitirAcesso secretario = new Secretario();
-		PermitirAcesso permitirAcesso = new Secretario(login,senha);
-		
-		
-//		secretario.setLogin(login);
-//		secretario.setSenha(senha);
-		
-		if (permitirAcesso.autenticar()) {
-			List<Aluno> alunos = new ArrayList<Aluno>(); 
+	
+		if (new FuncaoAutenticacao(new Diretor(login,senha)).autenticar()) {
 			
-//		if (login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
+			List<Aluno> alunos = new ArrayList<Aluno>(); 	
 
 			HashMap<String, List<Aluno>> maps = new HashMap<String, List<Aluno>>();
-
-//		List<Aluno> alunosAprovados = new ArrayList<Aluno>();
-//		List<Aluno> alunosReprovados = new ArrayList<Aluno>();
-//		List<Aluno> alunosRecuperacao = new ArrayList<Aluno>();
 
 			for (int qtde = 1; qtde < 6; qtde++) {
 

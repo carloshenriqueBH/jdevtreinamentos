@@ -1,5 +1,6 @@
 package cursojava.classes;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /* 
@@ -16,33 +17,21 @@ public class Disciplina {
 	 * Passando a usar listas - 19/06/2024: aula 9.20 Todo o código anterior será
 	 * apagado (vou comentar e salvar no final da classe
 	 */
-	private double nota;
+	private double[] nota = new double[4];
 	private String disciplina;
 
-	public double getNota() {
-		return nota;
-	}
-
-	public void setNota(double nota) {
-		this.nota = nota;
-	}
 
 	public String getDisciplina() {
 		return disciplina;
 	}
 
-	public void setDisciplina(String disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	@Override
-	public String toString() {
-		return "Disciplina [nota=" + nota + ", disciplina=" + disciplina + "]";
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(disciplina, nota);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((disciplina == null) ? 0 : disciplina.hashCode());
+		result = prime * result + Arrays.hashCode(nota);
+		return result;
 	}
 
 	@Override
@@ -54,8 +43,38 @@ public class Disciplina {
 		if (getClass() != obj.getClass())
 			return false;
 		Disciplina other = (Disciplina) obj;
-		return Objects.equals(disciplina, other.disciplina)
-				&& Double.doubleToLongBits(nota) == Double.doubleToLongBits(other.nota);
+		if (disciplina == null) {
+			if (other.disciplina != null)
+				return false;
+		} else if (!disciplina.equals(other.disciplina))
+			return false;
+		if (!Arrays.equals(nota, other.nota))
+			return false;
+		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "Disciplina [nota=" + Arrays.toString(nota) + ", disciplina=" + disciplina + "]";
+	}
+	
+	public double getMediaNotas() {
+		double somaNotas = 0;
+		for (int i=0; i < nota.length; i++) {
+			somaNotas += nota[i];
+		}
+		return somaNotas/nota.length;
+	}
+
+	public double[] getNota() {
+		return nota;
+	}
+
+	public void setNota(double[] nota) {
+		this.nota = nota;
+	}
+
+	public void setDisciplina(String disciplina) {
+		this.disciplina = disciplina;
+	}	
 }

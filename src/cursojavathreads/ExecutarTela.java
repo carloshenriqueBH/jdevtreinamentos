@@ -7,5 +7,4 @@ public class ExecutarTela {
 		TelaTimeThread telaTimeThread = new TelaTimeThread();
 
 	}
-
 }

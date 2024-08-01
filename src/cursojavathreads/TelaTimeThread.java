@@ -26,11 +26,15 @@ public class TelaTimeThread extends JDialog {
 	private JTextField mostraTempo2 = new JTextField();
 	private JButton jButtonStart = new JButton("Start");
 	private JButton jButtonStop = new JButton("Stop");
+	
+	private volatile boolean runningThread1 = false;
+	private volatile boolean runningThread2 = false;
 
 	private Runnable thread1 = new Runnable() {
 
 		public void run() {
-			while (true) {
+			runningThread1 = true;
+			while (runningThread1) {
 				mostraTempo
 						.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm.ss").format(Calendar.getInstance().getTime()));
 				try {
@@ -44,7 +48,8 @@ public class TelaTimeThread extends JDialog {
 	private Runnable thread2 = new Runnable() {
 
 		public void run() {
-			while (true) {
+			runningThread2 = true;
+			while (runningThread2) {
 				mostraTempo2
 						.setText(new SimpleDateFormat("dd/MM/yyyy hh:mm:ss").format(Calendar.getInstance().getTime()));
 				try {
@@ -99,6 +104,8 @@ public class TelaTimeThread extends JDialog {
 
 			/* executa o click do botão de start */
 			public void actionPerformed(ActionEvent e) {
+				runningThread1 = false;
+				runningThread2 = false;
 				
 				thread1Time = new Thread(thread1);
 				thread1Time.start();
@@ -108,17 +115,16 @@ public class TelaTimeThread extends JDialog {
 				
 				jButtonStart.setEnabled(false);
 				jButtonStop.setEnabled(true);
-
 			}
-
 		});
 
 		jButtonStop.addActionListener(new ActionListener() {
 
-			// @SuppressWarnings("removal")
-			public void actionPerformed(ActionEvent e) {
-				thread1Time.stop();
-				thread2Time.stop();
+			public void actionPerformed(ActionEvent e) { // EXECUTA O CLICK DO BOTÃO
+			//	thread1Time.stop();
+			//	thread2Time.stop();
+				runningThread1 = false;
+				runningThread2 = false;
 				jButtonStart.setEnabled(true);
 				jButtonStop.setEnabled(false);
 			}

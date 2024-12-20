@@ -21,7 +21,7 @@ public class EmailBean implements Serializable {
 		private EmailService emailService;
 		
 		public String enviarEmail() {
-			emailService.enviar(null); 
+			emailService.enviar(montarEmail()); 
 			return null;				
 		}
 		private Email montarEmail() {

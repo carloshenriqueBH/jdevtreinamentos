@@ -5,29 +5,45 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="">
-		<table>
+	<form action="" method="post" onsubmit="return validarDados()? true : false">
+		<table border=1>
 			<tr>
 				<td><label>Nome:</label></td>
-				<td><input type="text" id="nome" name="nome"></td>
+				<td><input type="text" id="nome" name="nome" style="border-radius: 5px;"></td>
 			</tr>
 			<tr>
 				<td><label>Login:</label></td>
-				<td><input type="text" id="login" name="login"></td>
+				<td><input type="text" id="login" name="login" style="border-radius: 5px;"></td>
 			</tr>
 			<tr>
 				<td><label>Senha:</label></td>
-				<td><input type="password" id="senha" name="senha"></td>
+				<td><input type="password" id="senha" name="senha" style="border-radius: 5px;"></td>
 			</tr>
 
 			<tr>
-				<td></td>
-			</tr>
-
-			<tr>
-				<td><input type="submit" id="salvar" name="sala"></td>
-			</tr>
+			<td/>
+				<td>
+					<input type="submit" id="salvar" name="sala" style="width: 100%;border-radius: 5px;" >
+				</td>
 		</table>
 	</form>
+	<script type="text/javascript">
+		function validarDados(){
+			var nome = document.getElementById("nome").value;
+			var login = document.getElementById("login").value;
+			var senha = document.getElementById("senha").value;
+			if (nome== ''){
+				alert("Informe o nome.");
+				return false;
+			} else 	if (login== ''){
+				alert("Informe o login.");
+				return false;
+			} else 	if (senha== ''){
+				alert("Informe a senha.");
+				return false;
+			}
+			return true;
+		}
+	</script>
 </body>
 </html>

@@ -1,15 +1,15 @@
 package model;
 
 public class Userposjava {
-
-	private Long id;
+	
+	private Long Id;
 	private String nome;
 	private String email;
 	public Long getId() {
-		return id;
+		return Id;
 	}
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long Id) {
+		this.Id = Id;
 	}
 	public String getNome() {
 		return nome;
@@ -23,10 +23,7 @@ public class Userposjava {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	@Override
-	public String toString() {
-		return "Userposjava [id=" + id + ", nome=" + nome + ", email=" + email + "]";
-	}
 	
 	
+
 }

@@ -1,21 +1,21 @@
 package model;
 
-public class Userposjava {
-
-	private Long id;
+public class BeanUserFone {
+	
 	private String nome;
+	private String numero;
 	private String email;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getNome() {
 		return nome;
 	}
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
 	}
 	public String getEmail() {
 		return email;
@@ -25,8 +25,8 @@ public class Userposjava {
 	}
 	@Override
 	public String toString() {
-		return "Userposjava [id=" + id + ", nome=" + nome + ", email=" + email + "]";
+		return "BeanUserFone [nome=" + nome + ", numero=" + numero + ", email=" + email + "]";
 	}
 	
-	
+
 }
